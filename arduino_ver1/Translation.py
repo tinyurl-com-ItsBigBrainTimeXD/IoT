@@ -1,17 +1,11 @@
 import RPi.GPIO as GPIO
 from time import sleep
-#not sure what bottom line does
-# from gpiozero import DistanceSensor, Buzzer, Servo, Button
 
-# #https://wiki.seeedstudio.com/Grove-Ultrasonic_Ranger/
-# from grovepi import *
+#Set warnings off (optional)
+GPIO.setwarnings(False)
 
 GPIO.setmode(GPIO.BCM) #following printed numbering
 
-# ultrasonic = DistanceSensor(13)
-# buzzer = Buzzer(17)
-# servo = Servo(19)
-# pb = Button(12)
 
 # ultrasonic = 13
 buzzer = 17
@@ -21,7 +15,7 @@ pb = 22
 # GPIO.setup(ultrasonic, GPIO.IN)
 GPIO.setup(buzzer, GPIO.OUT)
 GPIO.setup(servo, GPIO.OUT)
-GPIO.setup(pb, GPIO.IN)
+GPIO.setup(pb, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 pwm=GPIO.PWM(servo, 50)
 pwm.start(0)
@@ -41,10 +35,16 @@ def SetAngle(angle):
 def loop():
     
     SetAngle(90) #close
-    button_read()
+	# button will now be a software trigger
+    buzzer_on()
+    buzzer_on()
     SetAngle(0) #open
-    button_read()
+
+    buzzer_on()
+    buzzer_on()
     
+# def button_callback(channel):
+#     print("Button was pushed!")
     
     
 #     print("ultra is on, press to stop")
@@ -86,6 +86,13 @@ def button_read():
 #     for i in range(90, 0, -1):
 #         servo.value = - i / 90
 
+def buzzer_on():
+    GPIO.output(buzzer,GPIO.HIGH)
+    print ("Beep")
+    sleep(0.5) # Delay in seconds
+    GPIO.output(buzzer,GPIO.LOW)
+    print ("No Beep")
+    sleep(0.5)
 
 # def buzzer_sound():
 #     buzzer.on()
