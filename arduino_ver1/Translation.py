@@ -40,8 +40,10 @@ def SetAngle(angle):
 
 def loop():
     
-    SetAngle(90) 
-    SetAngle(0) 
+    SetAngle(90) #close
+    button_read()
+    SetAngle(0) #open
+    button_read()
     
     
     
@@ -63,9 +65,14 @@ def loop():
 #     seeed_ultrasonic()
 
 
-# def button_read():
+# def button_read_old():
 #     while not pb.is_active():
 #         time.sleep(0.1)
+
+
+def button_read():
+    while GPIO.input(pb) == GPIO.LOW:
+        print("waiting for pb")
 
 
 # def lid_close():
