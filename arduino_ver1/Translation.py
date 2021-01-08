@@ -16,7 +16,7 @@ GPIO.setmode(GPIO.BCM) #following printed numbering
 # ultrasonic = 13
 buzzer = 17
 servo = 19
-pb = 12
+pb = 22
 
 # GPIO.setup(ultrasonic, GPIO.IN)
 GPIO.setup(buzzer, GPIO.OUT)
