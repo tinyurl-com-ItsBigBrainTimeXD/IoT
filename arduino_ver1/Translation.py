@@ -1,5 +1,5 @@
 import time
-from gpiozero import DistanceSensor, Buzzer, Servo, Device, Button
+from gpiozero import DistanceSensor, Buzzer, Servo, Button
 
 
 ultrasonic = DistanceSensor(4)
