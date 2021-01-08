@@ -16,6 +16,8 @@ buzzer = 17
 servo = 19
 # pb = 22
 
+light = 4
+
 # GPIO.setup(ultrasonic, GPIO.IN)
 GPIO.setup(buzzer, GPIO.OUT)
 GPIO.setup(servo, GPIO.OUT)
