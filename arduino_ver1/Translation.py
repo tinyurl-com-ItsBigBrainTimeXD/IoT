@@ -3,8 +3,8 @@ from time import sleep
 #not sure what bottom line does
 # from gpiozero import DistanceSensor, Buzzer, Servo, Button
 
-#https://wiki.seeedstudio.com/Grove-Ultrasonic_Ranger/
-from grovepi import *
+# #https://wiki.seeedstudio.com/Grove-Ultrasonic_Ranger/
+# from grovepi import *
 
 GPIO.setmode(GPIO.BCM) #following printed numbering
 
