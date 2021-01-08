@@ -2,6 +2,7 @@ import multiprocessing as mp
 from time import sleep
 from Network.networking import send_data, form_packet
 
+
 def start_polling(input_queue: mp.Queue, output_queue: mp.Queue, host: str):
     """Start polling the server for data"""
     while True:
@@ -15,6 +16,7 @@ def start_polling(input_queue: mp.Queue, output_queue: mp.Queue, host: str):
 
         _, _, content = send_data(msg)
         output_queue.put(content)
+
 
 if __name__ == "__main__":
     input_queue = mp.Queue()
