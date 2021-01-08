@@ -20,7 +20,7 @@ def rc_time (light):
     count = 0                                       #Output on the pin for 
     GPIO.setup(light, GPIO.OUT)
     GPIO.output(light, GPIO.LOW)
-    time.sleep(0.1)                                 #Change the pin back to input
+    sleep(0.1)                                 #Change the pin back to input
     GPIO.setup(light, GPIO.IN)             #Count until the pin goes high
     while (GPIO.input(light) == GPIO.LOW):
         count += 1
