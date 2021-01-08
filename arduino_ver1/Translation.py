@@ -1,10 +1,7 @@
 import time
-from gpiozero.pins.pigpio import PiGPIOFactory
 from gpiozero import DistanceSensor, Buzzer, Servo, Device, Button
 
 
-factory = PiGPIOFactory()
-Device.pin_factory = factory
 ultrasonic = DistanceSensor(4)
 buzzer = Buzzer(7)
 servo = Servo(9)
