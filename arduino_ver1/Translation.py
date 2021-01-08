@@ -71,7 +71,7 @@ def loop():
 
 
 def button_read():
-    while GPIO.input(pb) == GPIO.HIGH:
+    while GPIO.input(pb) == GPIO.LOW:
         print("waiting for pb")
     print("pb pressed")
 
