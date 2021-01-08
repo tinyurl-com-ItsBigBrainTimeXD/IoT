@@ -1,8 +1,6 @@
 import RPi.GPIO as GPIO
 from time import sleep
 
-from gpiozero import LightSensor
-
 
 #Set warnings off (optional)
 GPIO.setwarnings(False)
@@ -17,6 +15,16 @@ servo = 19
 # pb = 22
 
 light = 4
+
+def rc_time (light):
+    count = 0                                       #Output on the pin for 
+    GPIO.setup(light, GPIO.OUT)
+    GPIO.output(light, GPIO.LOW)
+    time.sleep(0.1)                                 #Change the pin back to input
+    GPIO.setup(light, GPIO.IN)             #Count until the pin goes high
+    while (GPIO.input(light) == GPIO.LOW):
+        count += 1
+     return count 
 
 # GPIO.setup(ultrasonic, GPIO.IN)
 GPIO.setup(buzzer, GPIO.OUT)
@@ -41,7 +49,7 @@ def SetAngle(angle):
 
 def loop():
 	
-    ldr.value
+    print (rc_time(light))
     
 #     SetAngle(90) #close
 # 	# button will now be a software trigger
