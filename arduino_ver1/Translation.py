@@ -48,8 +48,11 @@ def SetAngle(angle):
 
 
 def loop():
-	
-    print (rc_time(light))
+    while rc_time(light):
+    	buzzer_on()
+    	print (rc_time(light))
+
+
     
 #     SetAngle(90) #close
 # 	# button will now be a software trigger
