@@ -1,21 +1,26 @@
 import RPi.GPIO as GPIO
 from time import sleep
 
+from gpiozero import LightSensor
+
+
 #Set warnings off (optional)
 GPIO.setwarnings(False)
 
 GPIO.setmode(GPIO.BCM) #following printed numbering
 
+ldr = LightSensor(4)
 
 # ultrasonic = 13
 buzzer = 17
 servo = 19
-pb = 22
+# pb = 22
 
 # GPIO.setup(ultrasonic, GPIO.IN)
 GPIO.setup(buzzer, GPIO.OUT)
 GPIO.setup(servo, GPIO.OUT)
-GPIO.setup(pb, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+GPIO.setup(light, GPIO.IN)
+# GPIO.setup(pb, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 pwm=GPIO.PWM(servo, 50)
 pwm.start(0)
@@ -33,15 +38,17 @@ def SetAngle(angle):
 
 
 def loop():
+	
+    ldr.value
     
-    SetAngle(90) #close
-	# button will now be a software trigger
-    buzzer_on()
-    buzzer_on()
-    SetAngle(0) #open
+#     SetAngle(90) #close
+# 	# button will now be a software trigger
+#     buzzer_on()
+#     buzzer_on()
+#     SetAngle(0) #open
 
-    buzzer_on()
-    buzzer_on()
+#     buzzer_on()
+#     buzzer_on()
     
 # def button_callback(channel):
 #     print("Button was pushed!")
