@@ -7,7 +7,7 @@ GPIO.setwarnings(False)
 
 GPIO.setmode(GPIO.BCM) #following printed numbering
 
-ldr = LightSensor(4)
+# ldr = LightSensor(4)
 
 # ultrasonic = 13
 buzzer = 17
