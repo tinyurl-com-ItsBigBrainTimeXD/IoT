@@ -3,7 +3,7 @@ from time import sleep
 from Network.networking import send_data, form_packet
 
 
-def start_polling(input_queue: mp.Queue, output_queue: mp.Queue, host: str):
+def start_polling(poll_input_queue: mp.Queue, poll_output_queue: mp.Queue, host: str):
     """Start polling the server for data"""
     while True:
         sleep(1)
@@ -11,17 +11,17 @@ def start_polling(input_queue: mp.Queue, output_queue: mp.Queue, host: str):
             'type': 1
         })
 
-        if not input_queue.empty():
-            msg = input_queue.get()
+        if not poll_input_queue.empty():
+            msg = poll_input_queue.get()
 
         _, _, content = send_data(msg)
-        output_queue.put(content)
+        poll_output_queue.put(content)
 
 
 if __name__ == "__main__":
     input_queue = mp.Queue()
     output_queue = mp.Queue()
-    proc = mp.Process(target = start_polling, args=(input_queue, output_queue, '192.168.43.32'))
+    proc = mp.Process(target=start_polling, args=(input_queue, output_queue, '192.168.43.32'))
     proc.start()
 
     # Run Pi processes here
