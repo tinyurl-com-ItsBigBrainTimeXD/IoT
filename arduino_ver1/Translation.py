@@ -15,8 +15,10 @@ val = 0
 
 def loop():
     lid_close()
+    print("Lid closed, waiting for PB")
     button_read()
     lid_open()
+    print("Lid open, waiting for PB")
     button_read()
 
 
@@ -45,6 +47,7 @@ def buzzer_sound():
 
 def seeed_ultrasonic():
     range_cm = ultrasonic.distance
+    print(range_cm)
     time.sleep(0.15)
 
 
