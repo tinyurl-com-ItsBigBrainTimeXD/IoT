@@ -67,12 +67,12 @@ def loop():
 #     	buzzer_on()
 #     	print (rc_time(light))
 	
-    SetLock(90) #unlock
+    SetLock(0) #unlock
     SetAngle(0) #open
 
     sleep(5)
     SetAngle(90)
-    SetLock(0)
+    SetLock(90)
     sleep(5)
     
 	
