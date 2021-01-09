@@ -8,7 +8,7 @@ from arduino_ver1.Translation import buzzer_on, SetLock, SetAngle, rc_time, ligh
 def start_polling(poll_output_queue: mp.Queue, host: str):
     """Start polling the server for data"""
     while True:
-        sleep(3)
+        sleep(5)
         msg = form_packet(host)
         content = "".join(send_data(msg)).split("\r\n")[-1]
         poll_output_queue.put(content)
