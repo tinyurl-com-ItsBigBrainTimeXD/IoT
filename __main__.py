@@ -30,7 +30,7 @@ if __name__ == "__main__":
         sleep(0.1)
 
         # Blocks on getting data
-        content = output_queue.get(block=True)
+        content = output_queue.get()
         print("loop")
         content = json.loads(content)
         lock = content['lock']
