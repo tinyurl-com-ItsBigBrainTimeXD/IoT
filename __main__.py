@@ -77,13 +77,13 @@ if __name__ == "__main__":
 
         # Check if the opening is valid
         # If photosensor and isLocked are contradictory make a buzzer sound
-        if rc_time(light) and isLocked:
-            buzzer_cycle = 5
-            writeWarning((
-                "WARNING", 
-                "Unauthorized Access",
-                "Alarm Activated"
-            ))
+        # if rc_time(light) and isLocked:
+        #     buzzer_cycle = 5
+        #     writeWarning((
+        #         "WARNING", 
+        #         "Unauthorized Access",
+        #         "Alarm Activated"
+        #     ))
 
         # Check if the buzzer still needs ringing
         if buzzer_cycle:
