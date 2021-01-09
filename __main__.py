@@ -32,7 +32,7 @@ if __name__ == "__main__":
         # Blocks on getting data
         content = output_queue.get()
 
-        if output_queue.empty():
+        if False:
             # Check if the opening is valid
             # If photosensor and isLocked are contradictory make a buzzer sound
             if rc_time(light) and isLocked:
