@@ -51,7 +51,7 @@ BUZZER_MSG = "Buzzer Sounding"
 
 def writeWarning(line:tuple):
     draw.rectangle((0,0,width,height), outline=0, fill=0)
-    for index, value in enumerate(lines):
+    for index, value in enumerate(line):
         draw.text((x, top + 8*index), value,  font=font, fill=255)
     disp.image(image)
     disp.display()
