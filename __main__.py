@@ -27,6 +27,7 @@ if __name__ == "__main__":
 
     while True:
         args = []
+        sleep(0.1)
 
         # Blocks on getting data
         content = output_queue.get(block=True)
