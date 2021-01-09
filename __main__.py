@@ -33,7 +33,9 @@ if __name__ == "__main__":
 
         # Blocks on getting data
         content = output_queue.get()
-        print(content)
+        while content.strip() == "":
+            print('hit')
+            content = output_queue.get()
         content = json.loads(content)
         lock = content['lock']
         buzzer = content['buzzer']
