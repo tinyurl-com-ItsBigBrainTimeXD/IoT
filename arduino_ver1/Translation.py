@@ -55,6 +55,8 @@ def writeWarning():
     disp.image(image)
     disp.display()
     sleep(5)
+    disp.clear()
+    disp.display()
 
 #Set warnings off (optional)
 GPIO.setwarnings(False)
