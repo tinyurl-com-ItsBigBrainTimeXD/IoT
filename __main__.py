@@ -9,7 +9,7 @@ def start_polling(poll_input_queue: mp.Queue, poll_output_queue: mp.Queue, host:
     """Start polling the server for data"""
     while True:
         sleep(1)
-        msg = form_packet('GET', host, '/device')
+        msg = form_packet(host)
 
         if not poll_input_queue.empty():
             msg = poll_input_queue.get()
@@ -21,7 +21,7 @@ def start_polling(poll_input_queue: mp.Queue, poll_output_queue: mp.Queue, host:
 if __name__ == "__main__":
     input_queue = mp.Queue()
     output_queue = mp.Queue()
-    proc = mp.Process(target=start_polling, args=(input_queue, output_queue, '192.168.43.32'))
+    proc = mp.Process(target=start_polling, args=(input_queue, output_queue, '192.168.43.32:12345'))
     proc.daemon = True
     proc.start()
 
