@@ -34,7 +34,9 @@ if __name__ == "__main__":
         args = []
 
         # Blocks on getting data
-        content = json.loads(output_queue.get(block=True))
+        content = output_queue.get(block=True)
+        print(content)
+        content = json.loads(content)
         lock = content['lock']
         buzzer = content['buzzer']
         
