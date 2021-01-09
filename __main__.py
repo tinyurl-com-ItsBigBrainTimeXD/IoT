@@ -5,15 +5,11 @@ from Network.networking import send_data, form_packet
 from arduino_ver1.Translation import buzzer_on, SetLock, SetAngle, rc_time, light, writeWarning
 
 
-def start_polling(poll_input_queue: mp.Queue, poll_output_queue: mp.Queue, host: str):
+def start_polling(poll_output_queue: mp.Queue, host: str):
     """Start polling the server for data"""
     while True:
         sleep(1)
         msg = form_packet(host)
-
-        if not poll_input_queue.empty():
-            msg = poll_input_queue.get()
-
         _, _, content = send_data(msg)
         poll_output_queue.put(content.strip())
 
@@ -21,7 +17,7 @@ def start_polling(poll_input_queue: mp.Queue, poll_output_queue: mp.Queue, host:
 if __name__ == "__main__":
     input_queue = mp.Queue()
     output_queue = mp.Queue()
-    proc = mp.Process(target=start_polling, args=(input_queue, output_queue, '192.168.43.32:12345'))
+    proc = mp.Process(target=start_polling, args=(output_queue, '192.168.43.32:12345'))
     proc.daemon = True
     proc.start()
 
