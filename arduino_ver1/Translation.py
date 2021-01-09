@@ -80,9 +80,9 @@ def rc_time (light):
     GPIO.output(light, GPIO.LOW)
     sleep(0.1)                                 #Change the pin back to input
     GPIO.setup(light, GPIO.IN)             #Count until the pin goes high
-    # while (GPIO.input(light) == GPIO.LOW):
-    #     count += 1
-    return GPIO.input(light) == GPIO.HIGH
+    while (GPIO.input(light) == GPIO.LOW):
+        count += 1
+    return count
 
 # GPIO.setup(ultrasonic, GPIO.IN)
 GPIO.setup(buzzer, GPIO.OUT)

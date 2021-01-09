@@ -31,6 +31,18 @@ if __name__ == "__main__":
 
         # Blocks on getting data
         content = output_queue.get()
+
+        if not content:
+            # Check if the opening is valid
+            # If photosensor and isLocked are contradictory make a buzzer sound
+            if rc_time(light) and isLocked:
+                buzzer_cycle = 5
+                writeWarning((
+                    "WARNING", 
+                    "Unauthorized Access",
+                    "Alarm Activated"
+                ))
+            continue
         print("loop")
         content = json.loads(content)
         lock = content['lock']
@@ -74,16 +86,6 @@ if __name__ == "__main__":
                 # Unlock the box
                 SetLock(0)
                 SetAngle(0)
-
-        # Check if the opening is valid
-        # If photosensor and isLocked are contradictory make a buzzer sound
-        if rc_time(light) and isLocked:
-            buzzer_cycle = 5
-            writeWarning((
-                "WARNING", 
-                "Unauthorized Access",
-                "Alarm Activated"
-            ))
 
         # Check if the buzzer still needs ringing
         if buzzer_cycle:
