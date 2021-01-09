@@ -11,9 +11,8 @@ def start_polling(poll_output_queue: mp.Queue, host: str):
         sleep(1)
         msg = form_packet(host)
         print("Sending")
-        data = send_data(msg)
-        print(f"Received: {data}")
-        poll_output_queue.put(data.strip())
+        content = "".join(send_data(msg)).split("\r\n")[-1]
+        poll_output_queue.put(content)
 
 
 if __name__ == "__main__":
