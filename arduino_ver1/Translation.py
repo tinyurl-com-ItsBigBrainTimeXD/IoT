@@ -68,9 +68,13 @@ def loop():
 #     	print (rc_time(light))
 	
     SetLock(90) #unlock
-    SetAngle(0)
-    SetLock(0)
+    SetAngle(0) #open
+
+    sleep(5)
     SetAngle(90)
+    SetLock(0)
+    sleep(5)
+    
 	
 
 
