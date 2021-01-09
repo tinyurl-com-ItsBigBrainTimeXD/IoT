@@ -11,7 +11,7 @@ load_dotenv()
 HOST = "192.168.43.32"
 PORT = 12345
 
-def form_packet(protocol: str, host: str, ext: str, content:dict):
+def form_packet(protocol: str, host: str, ext: str):
     """Form the packets"""
     # Convert the data to json
     data = json.dumps(content)
