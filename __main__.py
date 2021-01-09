@@ -29,9 +29,6 @@ if __name__ == "__main__":
 
         # Blocks on getting data
         content = output_queue.get()
-        while content.strip() == "":
-            print('hit')
-            content = output_queue.get()
         content = json.loads(content)
         lock = content['lock']
         buzzer = content['buzzer']
@@ -40,43 +37,40 @@ if __name__ == "__main__":
         if buzzer:
 
             # Set buzzer cycle = 5
-            buzzer_cycle = 5
+            buzzer_cycle = 10
             writeWarning((
                 "Alarm Activated",
                 "Locate Box Protocol",
                 "Find my box"
             ))
 
-        # Check if the lock state is changed
-        if lock != isLocked:
+        # Activate / Deactivate lock
+        isLocked = lock
 
-            # Activate / Deactivate lock
-            isLocked = lock
+        if isLocked:
 
-            if isLocked:
+            writeWarning((
+                "Closing the Lid",
+                "Locking the box",
+                "Thank you for using"
+            ))
 
-                writeWarning((
-                    "Closing the Lid",
-                    "Locking the box",
-                    "Thank you for using"
-                ))
+            # Lock the box
+            SetAngle(90)
+            sleep(1)
+            SetLock(90)
 
-                # Lock the box
-                SetAngle(90)
-                sleep(1)
-                SetLock(90)
+        else:
 
-            else:
+            writeWarning((
+                "Unlocking the box",
+                "Opening the Lid",
+                "Thank you for using"
+            ))
 
-                writeWarning((
-                    "Unlocking the box",
-                    "Opening the Lid",
-                    "Thank you for using"
-                ))
-
-                # Unlock the box
-                SetLock(0)
-                SetAngle(0)
+            # Unlock the box
+            SetLock(0)
+            SetAngle(0)
 
         # Check if the opening is valid
         # If photosensor and isLocked are contradictory make a buzzer sound
