@@ -30,6 +30,7 @@ def rc_time (light):
 # GPIO.setup(ultrasonic, GPIO.IN)
 GPIO.setup(buzzer, GPIO.OUT)
 GPIO.setup(servo, GPIO.OUT)
+GPIO.setup(lock, GPIO.OUT)
 GPIO.setup(light, GPIO.IN)
 # GPIO.setup(pb, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
