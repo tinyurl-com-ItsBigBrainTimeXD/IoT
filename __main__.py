@@ -10,7 +10,9 @@ def start_polling(poll_output_queue: mp.Queue, host: str):
     while True:
         sleep(1)
         msg = form_packet(host)
+        print("Sending")
         _, _, content = send_data(msg)
+        print(f"Received: {content}")
         poll_output_queue.put(content.strip())
 
 
