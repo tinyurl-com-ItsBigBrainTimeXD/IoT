@@ -13,6 +13,7 @@ GPIO.setmode(GPIO.BCM) #following printed numbering
 buzzer = 17
 servo = 19
 # pb = 22
+lock = 20
 
 light = 4
 
@@ -35,6 +36,9 @@ GPIO.setup(light, GPIO.IN)
 pwm=GPIO.PWM(servo, 50)
 pwm.start(0)
 
+lock_pwm=GPIO.PWM(lock, 50)
+lock_pwm.start(0)
+
 position = 0
 val = 0
 
@@ -45,12 +49,28 @@ def SetAngle(angle):
 	sleep(1)
 	GPIO.output(servo, False)
 	pwm.ChangeDutyCycle(0)
+	
+def SetLock(angle):
+	duty = angle / 18 + 2
+	GPIO.output(lock, True)
+	lock_pwm.ChangeDutyCycle(duty)
+	sleep(1)
+	GPIO.output(lock, False)
+	lock_pwm.ChangeDutyCycle(0)
 
 
 def loop():
-    while rc_time(light):
-    	buzzer_on()
-    	print (rc_time(light))
+
+	
+#     while rc_time(light):
+#     	buzzer_on()
+#     	print (rc_time(light))
+	
+    SetLock(90) #unlock
+    SetAngle(0)
+    SetLock(0)
+    SetAngle(90)
+	
 
 
     
