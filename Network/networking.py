@@ -14,7 +14,6 @@ PORT = 12345
 def form_packet(protocol: str, host: str, ext: str):
     """Form the packets"""
     # Convert the data to json
-    data = json.dumps(content)
     packet = f"""{protocol} {ext} HTTP/1.1\r\nHost: {host}\r\n"""
     return packet
 
