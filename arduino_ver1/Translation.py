@@ -46,7 +46,7 @@ x = 0
 # Load default font.
 font = ImageFont.load_default()
 
-def writeWarning(){
+def writeWarning():
     draw.rectangle((0,0,width,height), outline=0, fill=0)
     draw.text((x, top),       "Alarm Activated",  font=font, fill=255)
     draw.text((x, top+8),     "Buzzer Sounding", font=font, fill=255)
@@ -55,7 +55,6 @@ def writeWarning(){
     disp.image(image)
     disp.display()
     time.sleep(5)
-}
 
 #Set warnings off (optional)
 GPIO.setwarnings(False)
