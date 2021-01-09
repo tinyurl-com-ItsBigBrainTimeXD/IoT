@@ -54,7 +54,7 @@ def writeWarning():
 #     draw.text((x, top+25),    "",  font=font, fill=255)
     disp.image(image)
     disp.display()
-    time.sleep(5)
+    sleep(5)
 
 #Set warnings off (optional)
 GPIO.setwarnings(False)
