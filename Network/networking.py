@@ -40,5 +40,5 @@ def send_data(data: str):
 
 if __name__ == "__main__":
     pkt = form_packet("192.168.43.32:12345")
-    data = send_data(pkt)
-    print("\n".join(data))
+    _,_,content = send_data(pkt)
+    print(content, type(content))
