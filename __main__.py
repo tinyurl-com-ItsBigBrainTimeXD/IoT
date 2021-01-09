@@ -7,7 +7,7 @@ def start_polling(poll_input_queue: mp.Queue, poll_output_queue: mp.Queue, host:
     """Start polling the server for data"""
     while True:
         sleep(1)
-        msg = form_packet('GET', host, '/frontend', {
+        msg = form_packet('GET', host, '/device', {
             'type': 1
         })
 
@@ -22,9 +22,50 @@ if __name__ == "__main__":
     input_queue = mp.Queue()
     output_queue = mp.Queue()
     proc = mp.Process(target=start_polling, args=(input_queue, output_queue, '192.168.43.32'))
+    proc.daemon = True
     proc.start()
 
-    # Run Pi processes here
+    buzzer_cycle = 0
+    isLocked = True
+
     while True:
-        if not output_queue.empty():
-            print(output_queue.get())
+        # Blocks on getting data
+        content = output_queue.get(block=True)
+        lock = content['lock']
+        buzzer = content['buzzer']
+        
+        # Check if user wants to activate the buzzer
+        if buzzer:
+
+            # Set buzzer cycle = 5
+            buzzer_cycle = 5
+
+        # Check if the lock state is changed
+        if lock != isLocked:
+
+            # Activate / Deactivate lock
+            isLocked = lock
+
+            if isLocked:
+
+                # Lock the box
+                pass
+
+            else:
+
+                # Unlock the box
+                pass
+
+        # Check if the buzzer still needs ringing
+        if buzzer_cycle:
+
+            # Activate buzzer
+            pass
+
+        # Check if the opening is valid
+
+        # If photosensor and isLocked are contradictory make a buzzer sound
+
+
+
+
