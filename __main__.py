@@ -8,7 +8,7 @@ from arduino_ver1.Translation import buzzer_on, SetLock, SetAngle, rc_time, ligh
 def start_polling(poll_output_queue: mp.Queue, host: str):
     """Start polling the server for data"""
     while True:
-        sleep(5)
+        sleep(5 )
         msg = form_packet(host)
         content = "".join(send_data(msg)).split("\r\n")[-1]
         poll_output_queue.put(content)
@@ -44,32 +44,33 @@ if __name__ == "__main__":
                 "Find my box"
             ))
 
-        # Activate / Deactivate lock
-        isLocked = lock
+        if isLocked != lock:
+            # Activate / Deactivate lock
+            isLocked = lock
 
-        if isLocked:
+            if isLocked:
 
-            writeWarning((
-                "Closing the Lid",
-                "Locking the box",
-                "Thank you for using"
-            ))
+                writeWarning((
+                    "Closing the Lid",
+                    "Locking the box",
+                    "Thank you for using"
+                ))
 
-            # Lock the box
-            SetAngle(90)
-            SetLock(90)
+                # Lock the box
+                SetAngle(90)
+                SetLock(90)
 
-        else:
+            else:
 
-            writeWarning((
-                "Unlocking the box",
-                "Opening the Lid",
-                "Thank you for using"
-            ))
+                writeWarning((
+                    "Unlocking the box",
+                    "Opening the Lid",
+                    "Thank you for using"
+                ))
 
-            # Unlock the box
-            SetLock(0)
-            SetAngle(0)
+                # Unlock the box
+                SetLock(0)
+                SetAngle(0)
 
         # Check if the opening is valid
         # If photosensor and isLocked are contradictory make a buzzer sound
