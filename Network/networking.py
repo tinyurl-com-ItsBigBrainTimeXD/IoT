@@ -8,8 +8,8 @@ from socket import socket, AF_INET, SOCK_STREAM
 load_dotenv()
 
 # Get the required variables
-HOST = os.getenv('HOST')
-PORT = int(os.getenv('PORT'))
+HOST = "192.168.43.32"
+PORT = 12345
 
 def form_packet(protocol: str, host: str, ext: str, content:dict):
     """Form the packets"""
