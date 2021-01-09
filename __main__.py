@@ -8,7 +8,8 @@ from arduino_ver1.Translation import buzzer_on, SetLock, SetAngle, rc_time, ligh
 def start_polling(poll_output_queue: mp.Queue, host: str):
     """Start polling the server for data"""
     while True:
-        sleep(5 )
+        sleep(5)
+        print("Poll")
         msg = form_packet(host)
         content = "".join(send_data(msg)).split("\r\n")[-1]
         poll_output_queue.put(content)
@@ -28,7 +29,8 @@ if __name__ == "__main__":
         args = []
 
         # Blocks on getting data
-        content = output_queue.get()
+        content = output_queue.get(block=True)
+        print("loop")
         content = json.loads(content)
         lock = content['lock']
         buzzer = content['buzzer']
