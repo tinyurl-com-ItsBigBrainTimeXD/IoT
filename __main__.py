@@ -15,6 +15,7 @@ def start_polling(poll_input_queue: mp.Queue, poll_output_queue: mp.Queue, host:
             msg = poll_input_queue.get()
 
         _, _, content = send_data(msg)
+        print(content)
         poll_output_queue.put(content)
 
 
