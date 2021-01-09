@@ -1,4 +1,5 @@
 import multiprocessing as mp
+import json
 from time import sleep
 from Network.networking import send_data, form_packet
 from arduino_ver1.Translation import buzzer_on, SetLock, SetAngle, rc_time, light, writeWarning
@@ -33,7 +34,7 @@ if __name__ == "__main__":
         args = []
 
         # Blocks on getting data
-        content = output_queue.get(block=True)
+        content = json.loads(output_queue.get(block=True))
         lock = content['lock']
         buzzer = content['buzzer']
         
