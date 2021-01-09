@@ -57,7 +57,6 @@ if __name__ == "__main__":
 
             # Lock the box
             SetAngle(90)
-            sleep(1)
             SetLock(90)
 
         else:
