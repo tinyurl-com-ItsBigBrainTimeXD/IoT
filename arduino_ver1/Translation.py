@@ -46,12 +46,13 @@ x = 0
 # Load default font.
 font = ImageFont.load_default()
 
-def writeWarning():
+ALARM_MSG = "Alarm Activated"
+BUZZER_MSG = "Buzzer Sounding"
+
+def writeWarning(line:tuple):
     draw.rectangle((0,0,width,height), outline=0, fill=0)
-    draw.text((x, top),       "Alarm Activated",  font=font, fill=255)
-    draw.text((x, top+8),     "Buzzer Sounding", font=font, fill=255)
-#     draw.text((x, top+16),    "",  font=font, fill=255)
-#     draw.text((x, top+25),    "",  font=font, fill=255)
+    for index, value in enumerate(lines)
+        draw.text((x, top + 8*index), value,  font=font, fill=255)
     disp.image(image)
     disp.display()
     sleep(5)
@@ -119,9 +120,9 @@ def SetLock(angle):
 def loop():
 
 	
-#     while rc_time(light):
-#     	buzzer_on()
-#     	print (rc_time(light))
+    while rc_time(light):
+    	buzzer_on()
+    	print (rc_time(light))
 	
     SetLock(0) #unlock
     SetAngle(0) #open
@@ -174,10 +175,10 @@ def loop():
 #         time.sleep(0.1)
 
 
-def button_read():
-    while GPIO.input(pb) == GPIO.LOW:
-        print("waiting for pb")
-    print("pb pressed")
+# def button_read():
+#     while GPIO.input(pb) == GPIO.LOW:
+#         print("waiting for pb")
+#     print("pb pressed")
 
 
 # def lid_close():
