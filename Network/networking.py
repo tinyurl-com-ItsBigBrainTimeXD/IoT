@@ -15,7 +15,7 @@ def form_packet(protocol: str, host: str, ext: str, content:dict):
     """Form the packets"""
     # Convert the data to json
     data = json.dumps(content)
-    packet = f"""{protocol} {ext} HTTP/1.1\r\nHost: {host}\r\nContent-type: application/json\r\nContent-Length:{len(data)}\r\n\r\n{data}"""
+    packet = f"""{protocol} {ext} HTTP/1.1\r\nHost: {host}\r\n"""
     return packet
 
 def send_data(data: str):

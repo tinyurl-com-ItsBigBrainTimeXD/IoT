@@ -9,9 +9,7 @@ def start_polling(poll_input_queue: mp.Queue, poll_output_queue: mp.Queue, host:
     """Start polling the server for data"""
     while True:
         sleep(1)
-        msg = form_packet('GET', host, '/device', {
-            'type': 1
-        })
+        msg = form_packet('GET', host, '/device')
 
         if not poll_input_queue.empty():
             msg = poll_input_queue.get()
@@ -35,7 +33,6 @@ if __name__ == "__main__":
 
         # Blocks on getting data
         content = output_queue.get(block=True)
-        print(content)
         content = json.loads(content)
         lock = content['lock']
         buzzer = content['buzzer']
