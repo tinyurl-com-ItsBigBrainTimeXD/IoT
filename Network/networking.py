@@ -1,20 +1,18 @@
-import os
 import json
-from dotenv import load_dotenv
 from socket import socket, AF_INET, SOCK_STREAM
-
-
-# Load the .env file into python
-load_dotenv()
 
 # Get the required variables
 HOST = "192.168.43.32"
 PORT = 12345
 
-def form_packet(protocol: str, host: str, ext: str):
+def form_packet(host):
     """Form the packets"""
     # Convert the data to json
-    packet = f"""{protocol} {ext} HTTP/1.1\r\nHost: {host}\r\n"""
+    packet = f"""GET /device HTTP/1.1
+Host: {host}
+Connection: close
+
+"""
     return packet
 
 def send_data(data: str):
@@ -30,9 +28,8 @@ def send_data(data: str):
         sock.send(data.encode('utf-8'))
 
         # Get response from the server
-        response.append(sock.recv(2048).decode('utf-8'))
-        response.append(sock.recv(2048).decode('utf-8'))
-        response.append(sock.recv(2048).decode('utf-8'))
+        for _ in range(3):
+            response.append(sock.recv(2048).decode('utf-8'))
 
     except Exception as e:
         print(f"Error connecting to the server: {e}")
@@ -42,6 +39,6 @@ def send_data(data: str):
         return response
 
 if __name__ == "__main__":
-    pkt = form_packet('GET', "localhost", '/frontend', {"type": 1})
+    pkt = form_packet("192.168.43.32:12345")
     data = send_data(pkt)
     print("\n".join(data))
